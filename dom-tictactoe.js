@@ -28,6 +28,7 @@ const handleClick = (element) => {
 
 const addMarker = (id) => {
   console.log(`We'll place a mark on square: ${id}`)
+  document.getElementById(id).innerHTML = currentMarker
   // @TODO, Mix & Match. 
   // You will need the following pieces:
   
@@ -61,12 +62,16 @@ const checkForWin = () => {
   } else {
     // if no win, change the marker from X to O, or O to X for the next player.
     changeMarker()
-  }
+  };
 }
 
 const horizontalWin = () => {
-  // @TODO, Your code here: to check for horizontal wins
+  
+if(board[0][0] == "X" && board[0][1] == "X" && board[0][2] == "X" || board[0][0] == "O" && board[0][1] == "O" && board[0][2] == "O") {
+  return true;
 }
+};
+
 
 const verticalWin = () => {
   // @TODO, Your code here: to check for vertical wins
