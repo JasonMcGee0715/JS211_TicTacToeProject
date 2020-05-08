@@ -18,39 +18,14 @@ let board = [
   [' ', ' ', ' ']
 ];
 
-// assigns the first mark as 'X'
-// using let because the variable is expected to change from 'X' to 'O' and back
 let playerTurn = 'X';
-
-// is a function that print the current status of the board using the variable - board
-const printBoard = () => {
-  console.log('   0  1  2');
-  console.log('0 ' + board[0].join(' | '));
-  console.log('  ---------');
-  console.log('1 ' + board[1].join(' | '));
-  console.log('  ---------');
-  console.log('2 ' + board[2].join(' | '));
-}
-
-const horizontalWin = () => {
-  // Your code here to check for horizontal wins
-}
-
-const verticalWin = () => {
-  // Your code here to check for vertical wins
-}
-
-const diagonalWin = () => {
-  // Your code here to check for diagonal wins
-}
-
-const checkForWin = () => {
-  // Your code here call each of the check for types of wins
-}
-
-const ticTacToe = (row, column) => {
-  // Your code here to place a marker on the board
-  // then check for a win
+const changeMarker = () => {
+  if(playerTurn === "X"){
+    playerTurn = "O"
+  } 
+  else {
+    playerTurn = "X"
+  }
 }
 
 const getPrompt = () => {
@@ -63,6 +38,78 @@ const getPrompt = () => {
     });
   });
 }
+
+const ticTacToe = (row, column) => {
+  // Your code here to place a marker on the board
+  // then check for a win
+  board[row][column] = playerTurn;
+  if(playerTurn === "X"){
+    playerTurn = "O"
+  } 
+  else {
+    playerTurn = "X"
+  }
+}
+
+
+// assigns the first mark as 'X'
+// using let because the variable is expected to change from 'X' to 'O' and back
+
+
+
+// is a function that print the current status of the board using the variable - board
+const printBoard = () => {
+  console.log('   0  1  2');
+  console.log('0 ' + board[0].join(' | '));
+  console.log('  ---------');
+  console.log('1 ' + board[1].join(' | '));
+  console.log('  ---------');
+  console.log('2 ' + board[2].join(' | '));
+}
+
+const checkForWin = () => {
+  if (horizontalWin() || verticalWin() || diagonalWin()) {
+    return true 
+    // && window.alert('Player ${playerTurn}')
+  } 
+  else {
+    return false
+  }
+}
+
+const horizontalWin = () => {
+  if(board[0][0] == "X" && board[0][1] == "X" && board[0][2] == "X" || board[0][0] == "O" && board[0][1] == "O" && board[0][2] == "O") {
+    return true;
+  };
+  if(board[1][0] == "X" && board[1][1] == "X" && board[1][2] == "X" || board[1][0] == "O" && board[1][1] == "O" && board[1][2] == "O") {
+    return true;
+  };
+  if(board[2][0] == "X" && board[2][1] == "X" && board[2][2] == "X" || board[2][0] == "O" && board[2][1] == "O" && board[2][2] == "O") {
+    return true;
+  };
+};
+
+const verticalWin = () => {
+  if(board[0][0] == "X" && board[1][0] == "X" && board[2][0] == "X" || board[0][0] == "O" && board[1][0] == "O" && board[2][0] == "O") {
+    return true;
+  };
+  if(board[0][1] == "X" && board[1][1] == "X" && board[2][1] == "X" || board[0][1] == "O" && board[1][1] == "O" && board[2][1] == "O") {
+    return true;
+  };
+  if(board[0][2] == "X" && board[1][2] == "X" && board[2][2] == "X" || board[0][2] == "O" && board[1][2] == "O" && board[2][2] == "O") {
+    return true;
+  };
+};
+
+const diagonalWin = () => {
+  if(board[0][0] == "X" && board[1][1] == "X" && board[2][2] == "X" || board[0][0] == "O" && board[1][1] == "O" && board[2][2] == "O") {
+    return true;
+  };
+  if(board[2][0] == "X" && board[1][1] == "X" && board[0][2] == "X" || board[2][0] == "O" && board[1][2] == "O" && board[2][2] == "O") {
+    return true;
+  };
+}
+
 
 
 // Unit Tests
